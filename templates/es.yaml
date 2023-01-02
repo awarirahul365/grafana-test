@@ -1,0 +1,23 @@
+{{- range $key, $es := .Values.es }}
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: {{ $es.name }}
+  labels: {{ $es.labels }}
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: {{ $es.secretstorename }}
+    kind: ClusterSecretStore
+  target:
+    name: {{ $es.secretname }}
+    creationPolicy: Owner
+  data:
+    {{- range $remoteSecret := $es.remoteSecrets }}
+    - secretKey: {{ $remoteSecret.targetSecretKey }}
+      remoteRef:
+        key: {{ $remoteSecret.remoteRef.key }}
+        property: {{ $remoteSecret.remoteRef.property }}
+    {{- end }}
+---
+{{- end }}

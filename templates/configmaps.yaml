@@ -1,0 +1,11 @@
+{{- range $key, $configmap := .Values.configmaps }}
+apiVersion: v1
+data:
+  {{ $configmap.dataKey }}: {{ toYaml $configmap.data | nindent 2 }}
+kind: ConfigMap
+metadata:
+  name: {{ $configmap.name }}
+  labels:
+    {{ $configmap.labels }}
+---
+{{- end }}

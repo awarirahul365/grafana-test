@@ -1,0 +1,52 @@
+grafana:
+  resources:
+    limits:
+      cpu: 1
+      memory: 256Mi
+    requests:
+      cpu: 250m
+      memory: 128Mi
+
+  image:
+    repository: grafana/grafana
+    tag: 9.3.2
+
+# configmaps:
+#   - name: name
+#     dataKey: dataKey
+#     data: |
+#       data
+#     labels: |
+#       label: ''
+
+# estpl:
+#   name: name of template
+#   labels: labels
+#   secretstorename: the name of secretstore
+#   secretname: secret name which should be created
+#   configmapname: the name of configmap which should be exist
+#   configmapdatakey: the name of key which will use from configmap
+  # remoteSecrets:
+  # - targetSecretKey: the values which you are want to sync from aws secretstore
+  #   remoteRef:
+  #     key: name of AWS secretstore
+  #     property: the values which you are want to sync from aws secretstore
+  # - targetSecretKey: the values which you are want to sync from aws secretstore
+  #   remoteRef:
+  #     key: name of AWS secretstore
+  #     property: the values which you are want to sync from aws secretstore
+
+# es:
+#   name: name of template
+#   labels: labels
+#   secretstorename: the name of secretstore
+#   secretname: secret name which should be created
+  # remoteSecrets:
+  # - targetSecretKey: the values which you are want to sync from aws secretstore
+  #   remoteRef:
+  #     key: name of AWS secretstore
+  #     property: the values which you are want to sync from aws secretstore
+  # - targetSecretKey: the values which you are want to sync from aws secretstore
+  #   remoteRef:
+  #     key: name of AWS secretstore
+  #     property: the values which you are want to sync from aws secretstore

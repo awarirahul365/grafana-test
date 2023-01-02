@@ -1,0 +1,27 @@
+{{ if .Values.estpl }}
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: {{ .Values.estpl.name }}
+  labels: {{ .Values.estpl.labels }}
+spec:
+  secretStoreRef:
+    name: {{ .Values.estpl.secretstorename }}
+    kind: ClusterSecretStore
+  target:
+    name: {{ .Values.estpl.secretname }}
+    template:
+      engineVersion: v2
+      templateFrom:
+      - configMap:
+          name: {{ .Values.estpl.configmapname }}
+          items:
+          - key: {{ .Values.estpl.configmapdatakey }}
+  data:
+    {{- range $remoteSecret := .Values.estpl.remoteSecrets }}
+    - secretKey: {{ $remoteSecret.targetSecretKey }}
+      remoteRef:
+        key: {{ $remoteSecret.remoteRef.key }}
+        property: {{ $remoteSecret.remoteRef.property }}
+    {{- end }}
+{{ end }}
