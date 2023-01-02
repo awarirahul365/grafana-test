@@ -1,0 +1,29 @@
+{
+  "enabledManagers": [ 
+     "helmv3",
+    "dockerfile"
+    ],
+    "bumpVersion": [
+            "major",
+            "minor",
+            "patch"
+    ],
+  "repositories": [
+    "awarirahul365/grafana-test"
+  ],
+  "packageRules": [
+    {
+      "description": "lockFileMaintenance",
+      "matchUpdateTypes": [
+        "pin",
+        "digest",
+        "patch",
+        "minor",
+        "major",
+        "lockFileMaintenance"
+      ],
+      "dependencyDashboardApproval": false,
+      "stabilityDays": 0
+    }
+  ]
+}
